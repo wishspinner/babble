@@ -10,6 +10,7 @@ import lastVisibleElement from '../lib/last-visible-element'
 import { syncWithPostStream } from '../lib/chat-topic-utils'
 import { rerender } from '../lib/chat-component-utils'
 import User from 'discourse/models/user'
+import Site from 'discourse/models/site'
 import Babble from '../lib/babble'
 
 let scrollToPost = function(topic, postNumber, speed = 400, offset = 60) {
@@ -34,14 +35,6 @@ let scrollToPost = function(topic, postNumber, speed = 400, offset = 60) {
   })
 }
 
-let readPost = function(topic, $container) {
-  let postNumber = lastVisibleElement($container.find('.babble-chat'), '.babble-post', 'post-number')
-  if (postNumber <= topic.last_read_post_number) { return }
-  topic.set('last_read_post_number', postNumber)
-  syncWithPostStream(topic)
-  Babble.readPost(topic, postNumber)
-}
-
 let setupScrollContainer = function(topic) {
   forEachTopicContainer(topic, function($container) {
     if (!hasChatElements($container)) { return }
@@ -51,9 +44,9 @@ let setupScrollContainer = function(topic) {
 
     $($scrollContainer).on('scroll.discourse-babble-scroll', debounce(() => {
       $container.find('.babble-post-actions-menu').hide()
-      readPost(topic, $container)
+      Babble.ensureRead(topic, $container)
     }, 500))
-    readPost(topic, $container)
+    Babble.ensureRead(topic, $container)
 
     // Mark scroll container as activated
     $container.attr('scroll-container', 'active')
@@ -114,7 +107,9 @@ let setupComposer = function(topic, opts = { emojis: true, mentions: true }) {
         })
 
         $textarea.attr('babble-composer', 'active')
-        $textarea.focus()
+        if (!Site.current().isMobileDevice) {
+          $textarea.focus()
+        }
       }
     })
   })
