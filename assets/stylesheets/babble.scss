@@ -14,7 +14,7 @@ $default-chat-width: 300px;
 }
 
 /* Dropdown styles */
-.babble-sidebar {
+.babble-sidebar-wrapper {
   overflow: auto;
   width: $default-chat-width;
   min-width: $default-chat-width;
@@ -446,3 +446,18 @@ $default-chat-width: 300px;
   font-weight: bold;
   text-align: center;
 }
+
+
+/* chat things */
+.babble-sidebar-component {background:#171312; box-shadow: 0 2px 2px #111; position:fixed; bottom:0; left:0; z-index:9999;}
+.babble-sidebar-component .babble-title-wrapper {box-shadow:none;}
+.btn.babble-sidebar-collapsed { background-color:#1c1a19 !important; font-size:1.1em; bottom:0px;}
+.btn.babble-sidebar-collapsed--left button {width:60px !important; height:60px !important; transition:0.2s;}
+.btn.babble-sidebar-collapsed--left button:hover {background-color:#5c4e49 !important;}
+.babble-sidebar-collapsed--left,.btn.babble-sidebar-collapsed--left button, .btn.babble-sidebar-collapsed--left button:hover {border-radius:0px !important; left:0px;}
+.babble-sidebar-collapsed .fa {color:#ffffff !important;}
+
+.babble-title h4, .babble-topic-section-header {padding:11px 0 0 11px;font-weight:300; text-transform:uppercase; letter-spacing:1px;}
+.babble-available-topic a {font-size:0.9em; color:#b0a0a3;}
+.babble-context-toggle button, .babble-topic-section-header-wrapper button {border:rgba(59,54,52,0) 1px solid; transition:0.2s;}
+.babble-context-toggle button:hover, .babble-topic-section-header-wrapper button:hover {background:transparent !important; color:#ffffff !important; border:rgba(59,54,52,1) 1px solid;}
