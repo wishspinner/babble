@@ -107,7 +107,7 @@ export default Ember.Object.create({
   availableTopicAvatar(item, type) {
     switch(type) {
       case 'category':
-        return h('span.babble-topic-avatar', { style: { 'background-color': `#${item.category.color}` } })
+        return h('span.babble-topic-avatar', { style: { 'background-color': `#ff6c3f` } })
       case 'group':
         return h('img.babble-topic-avatar', { src: Discourse.getURL('/images/avatar.png') })
       case 'user':
