@@ -77,10 +77,13 @@ export default MountWidget.extend({
   @observes('visible')
   _updateOutletClass() {
     const $outlet = $('#main-outlet')
+    const $outletwo = $('#reply-control')
     if (this.visible) {
       $outlet.addClass(`chat-active--${Discourse.SiteSettings.babble_position}`)
+      $outletwo.addClass(`chat-active--${Discourse.SiteSettings.babble_position}`)
     } else {
       $outlet.removeClass(`chat-active--${Discourse.SiteSettings.babble_position}`)
+      $outletwo.removeClass(`chat-active--${Discourse.SiteSettings.babble_position}`)
     }
     this.appEvents.trigger('babble-rerender')
   },
