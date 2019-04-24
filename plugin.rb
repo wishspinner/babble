@@ -12,6 +12,7 @@ if respond_to?(:register_svg_icon)
   register_svg_icon "paperclip"
   register_svg_icon "expand"
   register_svg_icon "far-trash-alt"
+  register_svg_icon "comment-dots"
 end
 
 def babble_require(path)
