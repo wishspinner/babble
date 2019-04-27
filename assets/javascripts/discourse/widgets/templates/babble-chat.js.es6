@@ -73,7 +73,7 @@ export default Ember.Object.create({
 
   modifySizeButton() {
     if (this.widget.attrs.mobile) { return }
-    let options = { className: 'normalized' }
+    let options = { className: 'normalized-expand' }
     if (this.widget.attrs.expanded) {
       options.icon   = 'compress'
       options.action = 'compressChat'
